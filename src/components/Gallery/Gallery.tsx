@@ -1,9 +1,10 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { useGetAllMovies } from '../hooks/TMDB';
-import { IMovie } from '../interfaces/interfaces';
-import { Row } from './Row';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { useGetAllMovies } from '../../hooks/TMDB';
+import { IMovie } from '../../interfaces/interfaces';
+import { Card } from '../Cards/Card';
+import { AfterGallery, ResponsiveGallery } from './Gallery.styles';
 
-export const Table = () => {
+export const Gallery = () => {
     const [page, setPage] = useState(1);
     const { loading, error, list } = useGetAllMovies(page);
     const loader = useRef(null);
@@ -31,12 +32,15 @@ export const Table = () => {
 
     if (error) return <p>Error!</p>
     return (
-        <div className='Movies'>
-            { list.map((row: IMovie) => {
-                return <Row key={row.id} movie={row}></Row>
-            })}
+        <div>
             {loading && <p>Loading...</p>}
-            {!loading && <div ref={loader} />}                 
+            <ResponsiveGallery>
+                { list.map((row: IMovie) => {
+                    return <Card key={row.id} movie={row} />
+                })}               
+            </ResponsiveGallery>
+            <AfterGallery />
+            {!loading && <div ref={loader} />}  
         </div>
     );  
 }

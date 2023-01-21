@@ -15,4 +15,5 @@ export interface ICatalog {
 export interface IMovieCredit {
     id: number;
     name: string;
+    profile_path: string;
 }

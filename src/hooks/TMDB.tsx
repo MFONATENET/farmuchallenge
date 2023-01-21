@@ -6,7 +6,7 @@ const baseURL = "https://api.themoviedb.org/3";
 // Si fuera un desarrollo de verdad ponemos la información sensible en una variable de entorno.
 const api_key_url_param = "bce4b47142ed184077c8ea8739c2b515";
 
-
+// TODO: esto se podría mejorar con algun http interceptor más la cache de axios u otras librerías como react-query
 // https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=bce4b47142ed184077c8ea8739c2b515
 export const useGetAllMovies = (page: number) => {
     const [loading, setLoading] = useState(true);
